@@ -81,11 +81,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "lessRun": "npm run less1",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
-    "less1": "lessc src/less/FormRelated.less src/less/FormRelated.css",
-    "less2": "lessc src/less/SiteRelated.less src/less/SiteRelated.css",
-    "watch": "nodemon -e less -x \"npm run lessRun\""
+    "build": "node scripts/build.js"
   },
   "lint-staged": {
     "*.{js,jsx}": [
