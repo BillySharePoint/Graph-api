@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { AzureAD, AuthenticationState } from 'react-aad-msal';
 import { basicReduxStore } from './basicReduxStore';
+import axios from 'axios';
 
 // Import the authentication provider which holds the default settings
 import { authProvider } from './authProvider';
 import SampleAppButtonLaunch from './SampleAppButtonLaunch';
+import Axios from 'axios';
 
 const Insiderapp = (props) => {
   const [SampleStype, setSampleStype] = useState({});
@@ -13,6 +15,27 @@ const Insiderapp = (props) => {
   const handleClick = (sampleType) => {
     setSampleStype({ sampleType });
     localStorage.setItem('sampleType', sampleType);
+  };
+
+  const handleACToken = async () => {
+    const token = await authProvider.getAccessToken();
+    console.log('NICE##', token);
+
+    // https://graph.microsoft.com/v1.0/sites/cie493742.sharepoint.com:/sites/Contoso/Operations/Manufacturing?$select=id
+    let farmUrl = 'm365x044405.sharepoint.com';
+    let siteUrl = 'sites/BILLY';
+
+    const request = await axios({
+      method: 'GET',
+      url: `https://graph.microsoft.com/v1.0/sites/${farmUrl}:/${siteUrl}?$select=id`,
+      headers: {
+        Accept: 'application/json',
+        'content-Type': 'application/json',
+        Authorization: `Bearer ${token.accessToken}`,
+      },
+    });
+    console.log('Done', request);
+    return request;
   };
 
   useEffect(() => {
@@ -48,6 +71,17 @@ const Insiderapp = (props) => {
 
               {authenticationState === AuthenticationState.InProgress && (
                 <div>Logging in</div>
+              )}
+
+              {authenticationState === AuthenticationState.InProgress && (
+                <div>Logging in</div>
+              )}
+              {authenticationState === AuthenticationState.Authenticated && (
+                <div>
+                  <button className="Button" onClick={() => handleACToken()}>
+                    AC
+                  </button>{' '}
+                </div>
               )}
 
               <div className="SampleContainer">

@@ -9,7 +9,7 @@
     "@types/request": "^2.47.0",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
-    "axios": "^0.19.0",
+    "axios": "^0.19.2",
     "babel-eslint": "10.0.1",
     "babel-jest": "24.7.1",
     "babel-loader": "8.0.5",
@@ -79,7 +79,7 @@
     "workbox-webpack-plugin": "4.2.0"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "set HTTPS=true&&node scripts/start.js",
     "lessRun": "npm run less1",
     "build": "node scripts/build.js"
   },
