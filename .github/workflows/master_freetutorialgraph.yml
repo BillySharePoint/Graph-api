@@ -31,5 +31,5 @@ jobs:
       with:
         app-name: 'freetutorialgraph'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_83b5e3ef302848bb8fb82055e1bb837f }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6d547702e1a2444293b6d3dcecc27791 }}
         package: .
